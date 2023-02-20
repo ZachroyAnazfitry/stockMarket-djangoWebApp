@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content  %}
+
+<section>
+    <h1>Homepage</h1>
+
+    <h2>Display API data</h2>
+
+    <div>
+
+        {% comment %} display full json {% endcomment %}
+        {{api}}
+
+    </div>
+</section>
+
+<section>
+    <h3>To display one data</h3>
+
+    <p>not working as expected</p>
+
+    <div>
+        {% comment %} display only a value {% endcomment %}
+        {{ api.companyName }}
+    </div>
+</section>
+
+<section>
+    <h3>API Loop</h3>
+
+    <div>
+        {% if api %}
+
+            {% if api ==  "This is not getting data" %}
+
+            <p>Hahaha padan muka</p>
+
+            {% else %}
+
+                {% for key.value in api.items %}
+
+                    {{ key }}: {{ value }}
+                
+                {% endfor %}
+
+
+            {% endif %}
+
+        
+        {% endif %}
+    </div>
+</section>
+
+
+{% endblock  %}
+
