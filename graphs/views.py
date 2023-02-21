@@ -15,10 +15,14 @@ def home(request):
 
     try:
         api = json.loads(api_request.content)
+
+        # api = {}
+        # for i in api:
+        #     api.update(i)
     except Exception as e:
         api = "This is not getting data"
 
-
+    
 
     return render(request, 'home.html', {'api':api})
 
