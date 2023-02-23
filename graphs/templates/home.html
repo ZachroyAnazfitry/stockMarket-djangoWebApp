@@ -2,57 +2,74 @@
 
 {% block content  %}
 
+<h1 class="text-lg-center">Homepage</h1>
+
+
 <section>
 
-    {% if ticker %}
+    <div class="card" style="margin-top: 50px;border: 2px solid green;">
+        <div class="card-body">
+            {% if ticker %}
 
-        {{ ticker }}        
+            <div style="color: yellowgreen;">{{ ticker }}</div>
       
-    {% endif %}
+             {% endif %}
 
-    {% for i in api  %}
+        {% for i in api  %}
 
-        <h1>Company Name: {{ i.companyName }}</h1> <br>
-        Price: ${{ i.latestPrice }} <br>
-        Latest Time: ${{ i.latestTime }} <br>
-        Primary Exchange: ${{ i.primaryExchange }} <br>
-        
-        
-    {% endfor %}
+            <h2>Display data from Search</h2>
+
+            <h3>Company Name: {{ i.companyName }}</h3> <br>
+            Price: ${{ i.latestPrice }} <br>
+            Latest Time: {{ i.latestTime }} <br>
+            Primary Exchange: {{ i.primaryExchange }} <br>
+            YTD Change: {{ i.ytdChange }} <br>
+            
+            
+        {% endfor %}
+        </div>
+    </div>
    
 </section>
 
 
-<!-- <section>
-    <h1>Homepage</h1>
+<section>
+    <div class="card" style="margin: 10px 0 10px 0; border: 2px solid blue;">
+        <div class="card-body">
+            <h2>Display full API data</h2>
 
-    <h2>Display full API data</h2>
-
-    <div>
-
-        {% comment %} display full json {% endcomment %}
-        {{api}}
+            <div>
         
-
+                {% comment %} display full json {% endcomment %}
+                {{api}}
+                
+        
+            </div>
+        </div>
     </div>
+
 </section>
 
 <section>
-    <h3>To display one data</h3>
+   <div class="card" style="margin: 10px 0 10px 0; border: 2px solid orangered;">
+    <div class="card-body">
+        <h3>Display one data</h3>
 
-    {% for i in api  %}
-
-    {{ i.companyName }}
-      
-    {% endfor %}
-
-    <div>
-        {% comment %} display only a value {% endcomment %}
-        {{ api.extendedPrice }}
+        {% for i in api  %}
+    
+        {{ i.companyName }}
+          
+        {% endfor %}
+    
+        <div>
+            {% comment %} display only a value {% endcomment %}
+            {{ api.extendedPrice }}
+        </div>
     </div>
+   </div>
 </section>
 
-<section>
+<!-- <section>
     <h3>API Loop</h3>
 
     <div>
@@ -66,26 +83,26 @@
 
             {% else %}
 
-            <!-- must be in nested loop to iterate each objects in api array -->
+            must be in nested loop to iterate each objects in api array
 
-            <!-- {% for i in api  %} -->
+            {% for i in api  %}
 
-                <!-- {% for data in i.items %} -->
+                {% for data in i.items %}
 
-                <!-- Company Name: {{ i.companyName }} <br> -->
+                Company Name: {{ i.companyName }} <br>
 
-                <!-- {{ key }} : {{ value }} <br> -->
+                {{ key }} : {{ value }} <br>
 
                 
             
-                <!-- {% endfor %} -->
+                {% endfor %}
               
-            <!-- {% endfor %} -->
+            {% endfor %}
 
                
 
 
-            {% endif %}
+             {% endif %}
 
         
         {% endif %}
@@ -94,8 +111,7 @@
         
     </div>
 
-    <!-- {% include "stock.html" %} -->
-</section> 
+</section>  -->
 
 
 {% endblock  %}

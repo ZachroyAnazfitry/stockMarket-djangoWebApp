@@ -40,14 +40,14 @@ def home(request):
         return render(request, 'home.html', {'api':api})
 
     else:
-        return render(request, 'home.html', {'ticker': "Enter a ticker symbol"})
+        return render(request, 'home.html', {'ticker': "Enter a Company ticker in Search Stock"})
 
 
     
 
-
-
-
 # dipslay view for about
 def about(request):
     return render(request, 'about.html',{})
+
+def stock(request):
+    return render(request, 'stock.html', {})
