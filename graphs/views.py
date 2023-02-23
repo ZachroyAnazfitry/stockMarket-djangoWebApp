@@ -27,6 +27,6 @@ def home(request):
     return render(request, 'home.html', {'api':api})
 
 
-# view for about
+# dipslay view for about
 def about(request):
     return render(request, 'about.html',{})

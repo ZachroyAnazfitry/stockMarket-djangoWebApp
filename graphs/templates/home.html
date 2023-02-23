@@ -5,12 +5,13 @@
 <section>
     <h1>Homepage</h1>
 
-    <h2>Display API data</h2>
+    <h2>Display full API data</h2>
 
     <div>
 
         {% comment %} display full json {% endcomment %}
         {{api}}
+        
 
     </div>
 </section>
@@ -18,9 +19,11 @@
 <section>
     <h3>To display one data</h3>
 
-    <p>not working as expected</p>
+    {% for i in api  %}
 
-    {{ api.extendedPrice }}
+    {{ i.companyName }}
+      
+    {% endfor %}
 
     <div>
         {% comment %} display only a value {% endcomment %}
@@ -32,6 +35,8 @@
     <h3>API Loop</h3>
 
     <div>
+
+
         {% if api %}
 
             {% if api ==  "This is not getting data" %}
@@ -40,17 +45,30 @@
 
             {% else %}
 
-                {% for key,value in api.items %}
+            <!-- must be in nested loop to iterate each objects in api array -->
 
-                    {{ key }} : {{ value }}
+            {% for i in api  %}
+
+                {% for key,value in i.items %}
+
+                {{ key }} : {{ value }} <br>
+
                 
+            
                 {% endfor %}
+              
+            {% endfor %}
+
+               
 
 
             {% endif %}
 
         
         {% endif %}
+          
+
+        
     </div>
 </section>
 
