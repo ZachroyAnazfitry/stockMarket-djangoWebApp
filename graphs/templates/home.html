@@ -3,6 +3,27 @@
 {% block content  %}
 
 <section>
+
+    {% if ticker %}
+
+        {{ ticker }}        
+      
+    {% endif %}
+
+    {% for i in api  %}
+
+        <h1>Company Name: {{ i.companyName }}</h1> <br>
+        Price: ${{ i.latestPrice }} <br>
+        Latest Time: ${{ i.latestTime }} <br>
+        Primary Exchange: ${{ i.primaryExchange }} <br>
+        
+        
+    {% endfor %}
+   
+</section>
+
+
+<!-- <section>
     <h1>Homepage</h1>
 
     <h2>Display full API data</h2>
@@ -47,17 +68,19 @@
 
             <!-- must be in nested loop to iterate each objects in api array -->
 
-            {% for i in api  %}
+            <!-- {% for i in api  %} -->
 
-                {% for key,value in i.items %}
+                <!-- {% for data in i.items %} -->
 
-                {{ key }} : {{ value }} <br>
+                <!-- Company Name: {{ i.companyName }} <br> -->
+
+                <!-- {{ key }} : {{ value }} <br> -->
 
                 
             
-                {% endfor %}
+                <!-- {% endfor %} -->
               
-            {% endfor %}
+            <!-- {% endfor %} -->
 
                
 
@@ -70,7 +93,9 @@
 
         
     </div>
-</section>
+
+    <!-- {% include "stock.html" %} -->
+</section> 
 
 
 {% endblock  %}
