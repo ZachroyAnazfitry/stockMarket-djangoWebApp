@@ -3,5 +3,14 @@
 {% block content %}
 
 <h1>Stock</h1>
+
+<div>
+
+    {% for t in ticker %}
+
+       Company : {{ t }}
+
+    {% endfor %}
+</div>
   
 {% endblock content %}

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from .models import Stock
+
 # Create your views here.
 def home(request):
 
@@ -7,7 +9,7 @@ def home(request):
     import json
     import urllib.parse
 
-     # pk_d6bfc8b1acda47ea906bdb7e6fe9ae4b
+     # published_key = pk_d6bfc8b1acda47ea906bdb7e6fe9ae4b
 
     #  create a request to pull data
     api_request = requests.get("https://api.iex.cloud/v1/data/core/quote/aapl?token=pk_d6bfc8b1acda47ea906bdb7e6fe9ae4b")
@@ -49,5 +51,9 @@ def home(request):
 def about(request):
     return render(request, 'about.html',{})
 
+# function for stock page
 def stock(request):
-    return render(request, 'stock.html', {})
+
+    # pulling data
+    ticker = Stock.objects.all()
+    return render(request, 'stock.html', {'ticker': ticker})
