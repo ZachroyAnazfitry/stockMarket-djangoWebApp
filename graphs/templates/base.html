@@ -60,6 +60,23 @@
 
     <div class="container">
 
+      <br>
+
+        <!-- display messages/alerts -->
+        {% if messages %}
+
+          {% for message in messages %}
+
+            <div class="alert alert-info" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            
+          {% endfor %}
+          
+        {% endif %}
+
+
         {% block content  %}
 
 

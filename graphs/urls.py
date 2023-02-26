@@ -7,6 +7,7 @@ urlpatterns = [
     path('about.html', views.about, name="about" ),
     # stock page
     path('stock.html', views.stock, name="stock" ),
+    path('deleteStock/<stock_id>', views.deleteStock, name="deleteStock" ),
 
     
 ]

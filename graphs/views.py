@@ -57,6 +57,9 @@ def about(request):
 # function for creating stock page
 def stock(request):
 
+    import requests
+    import json
+
     # to store Stock data
     if request.method == 'POST':
         form = StockForm(request.POST or None)
@@ -68,7 +71,20 @@ def stock(request):
             return redirect('stock')
         
     else:
+
         # pulling data
         ticker = Stock.objects.all()
+
+         # connecting to api
+         
         return render(request, 'stock.html', {'ticker': ticker})
+    
+
+# create delete fucntion for stock
+def deleteStock(request, stock_id):
+    t = Stock.objects.get(pk=stock_id)  # called the id
+    t.delete()
+    messages.error(request, ("Stock has been deleted!"))
+    return redirect('stock')
+
 
