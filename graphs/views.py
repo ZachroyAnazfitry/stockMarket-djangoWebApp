@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import render, redirect
 
+from .forms import StockForm
 from .models import Stock
+
 
 # Create your views here.
 def home(request):
@@ -51,9 +54,21 @@ def home(request):
 def about(request):
     return render(request, 'about.html',{})
 
-# function for stock page
+# function for creating stock page
 def stock(request):
 
-    # pulling data
-    ticker = Stock.objects.all()
-    return render(request, 'stock.html', {'ticker': ticker})
+    # to store Stock data
+    if request.method == 'POST':
+        form = StockForm(request.POST or None)
+
+        if form.is_valid():  # this is validation
+            form.save()
+            # popup message
+            messages.success(request, ("New Stock has been added!"))
+            return redirect('stock')
+        
+    else:
+        # pulling data
+        ticker = Stock.objects.all()
+        return render(request, 'stock.html', {'ticker': ticker})
+
