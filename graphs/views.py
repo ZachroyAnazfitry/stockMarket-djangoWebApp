@@ -71,13 +71,26 @@ def stock(request):
             return redirect('stock')
         
     else:
-
+        
         # pulling data
         ticker = Stock.objects.all()
 
-         # connecting to api
-         
-        return render(request, 'stock.html', {'ticker': ticker})
+        # create empty python array(list) to save 
+        output = []
+
+        for ticker_item in ticker:
+               
+               api_request = requests.get(f"https://api.iex.cloud/v1/data/core/quote/{ticker_item}?token=pk_d6bfc8b1acda47ea906bdb7e6fe9ae4b")
+               try:
+                    api = json.loads(api_request.content)
+                    output.append(api)  # appending api stuff to a list 
+
+               except Exception as e:
+                    api = "This is not getting data"
+
+    
+        # dictionary for pass variable to the template
+        return render(request, 'stock.html', {'ticker': ticker, 'output':output})
     
 
 # create delete fucntion for stock

@@ -34,27 +34,31 @@
     </thead>
     <tbody>
 
-        {% for t in ticker  %}
+        <!-- passed output data in list -->
+        {% for output_item in output  %}
 
-        <tr>
-            <th scope="row">{{t.id}}</th>
-            <td>{{ t.companyName }}</td>
-            <td>${{ t.latestPrice }}</td>
-            <td>{{ t.latestTime }}</td>
-            <td>{{ t.prtmaryExchange }}</td>
-            <td>{{ t.ytdChange }}</td>
-            <td> <a href="{% url 'deleteStock' t.id %}">Delete Stock</a></td>
-          </tr>
+        <!-- {{ output_item }} <br> -->
 
+            {% for output in output_item %}
+
+                <tr>
+                    <th scope="row">{{t.id}}</th>
+                    <td>{{ output.companyName  }}</td>
+                    <td>${{ output.latestPrice }}</td>
+                    <td>{{ output.latestTime }}</td>
+                    <td>{{ output.primaryExchange }}</td>
+                    <td>{{ output.ytdChange}}</td>
+                    <td> <a href="">Delete Stock</a></td>
+                </tr>
+                         
+            {% endfor %}
         {% endfor %}
           
     </tbody>
   </table>
   
-
-
-
 <br>
+
 
 <!-- <div>
 
